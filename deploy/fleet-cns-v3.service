@@ -1,0 +1,39 @@
+[Unit]
+Description=CNS v3 — Fleet Inter-Agent Communication Bus
+After=network.target
+
+[Service]
+Type=simple
+User=eileen
+WorkingDirectory=/home/eileen/projects/fleet-cns-v3
+ExecStart=/home/eileen/projects/fleet-cns-v3/target/release/fleet-cns-v3 serve --bind 127.0.0.1 --port 9920
+Restart=always
+RestartSec=3
+
+# Resource limits — this is a message bus, not a data warehouse
+MemoryMax=128M
+MemoryHigh=96M
+CPUQuota=50%
+
+# Security hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/eileen/.hermes
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictNamespaces=true
+LockPersonality=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+RemoveIPC=true
+
+# Environment
+Environment=RUST_LOG=info,fleet_cns_v3=debug
+Environment=RUST_BACKTRACE=1
+
+[Install]
+WantedBy=default.target

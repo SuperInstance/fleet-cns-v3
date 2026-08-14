@@ -1,0 +1,35 @@
+[package]
+name = "fleet-cns-v3"
+version = "0.1.0"
+edition = "2021"
+description = "CNS v3 — Inter-agent communication bus with typed channels, priority queuing, and SQLite persistence"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+axum = { version = "0.8", features = ["json"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+dashmap = "6"
+notify = "7"
+uuid = { version = "1", features = ["v4", "serde"] }
+rusqlite = { version = "0.32", features = ["bundled"] }
+chrono = { version = "0.4", features = ["serde"] }
+tower = "0.5"
+tower-http = { version = "0.6", features = ["cors", "trace"] }
+futures = "0.3"
+async-stream = "0.3"
+anyhow = "1"
+thiserror = "2"
+dirs = "6"
+clap = { version = "4", features = ["derive"] }
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = true
