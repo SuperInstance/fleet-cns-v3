@@ -2,6 +2,8 @@
 
 **CNS v3 — Inter-agent communication bus for the fleet.**
 
+<p align="center"><img src="assets/images/hero.jpg" width="700" alt="The fleet's nervous system — a constellation of instruments passing typed messages"></p>
+
 Typed message channels, priority queuing, SQLite persistence, SSE streaming, and backwards-compatible USCP/JSONL spooling for Hermes.
 
 ## Why
